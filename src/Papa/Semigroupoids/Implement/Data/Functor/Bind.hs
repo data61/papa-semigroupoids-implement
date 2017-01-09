@@ -2,9 +2,10 @@
 
 module Papa.Semigroupoids.Implement.Data.Functor.Bind( 
   concat
+, concatMap
 ) where
 
-import Data.Functor.Bind(Bind(join))
+import Data.Functor.Bind(Bind(join), (-<<))
 
 concat ::
   Bind f =>
@@ -12,3 +13,12 @@ concat ::
   -> f a
 concat =
   join
+
+concatMap ::
+  Bind f =>
+  (a -> f b)
+  -> f a
+  -> f b
+concatMap =
+  (-<<)
+
